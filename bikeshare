@@ -282,3 +282,27 @@ if __name__ == "__main__":
 else:  
     print ("Executed when imported") 
     
+    
+  # Resources:
+
+#Python Datetime Tutorial: Manipulate Times, Dates, and Time Spans
+#https://www.dataquest.io/blog/python-datetime-tutorial/
+#https://www.w3resource.com/python-exercises/pandas/datetime/pandas-datetime-exercise-8.php
+
+#Pandas to Datetime:
+#https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html
+
+#The Most Frequent Month:
+#https://stackoverflow.com/questions/21082671/find-and-select-the-most-frequent-data-of-column-in-pandas-dataframe
+
+#Error Messages While Running the Code
+#https://www.edureka.co/blog/indentation-error-in-python/
+#https://www.edureka.co/blog/indentation-error-in-python/
+#https://stackoverflow.com/questions/58095353/why-do-i-get-nameerror-name-df-is-not-defined
+
+#Government Webinar Presentation-Udacity:
+#https://udacity.zoom.us/rec/play/qHSb2JT-OVIrMcKaKeCDstm9Lkanub7Cmg7PGLaXuANzuoWn-iocR76TB8ag-Q1zqAepEMj3IdmyET7R.c1D7DWL-EhyhDplA?continueMode=true&_x_zm_rtaid=Uiek8Z7eQKSIRp2gSc0ykw.1605786938073.7033a596344b9049246636a2873bbd49&_x_zm_rhtaid=666
+#Project Walkthrough Bikeshare
+    
+    
+    
