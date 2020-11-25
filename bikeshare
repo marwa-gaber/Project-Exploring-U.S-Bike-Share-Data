@@ -1,0 +1,284 @@
+echo "# Project-Exploring-U.S-Bike-Share-Data" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/marwa-gaber/Project-Exploring-U.S-Bike-Share-Data.git
+git push -u origin main
+
+
+# Define data to be time series and enable python to deal with time
+import time
+
+# Import the necessary libraries to ease data science implementation and computation
+import pandas as pd 
+import numpy as np
+
+# Assigning a dictionary to map the city names to the corresponding file name path in the file system
+CITY_DATA = { 'chicago': 'chicago.csv', 'new york city': 'new_york_city.csv', 'washington': 'washington.csv' }
+
+
+
+
+
+# Checking the Accuracy of the Data
+# Functions are declared with the def keyword and returned from with the return key‐word
+    
+def get_filters():
+    """
+    Asks user to specify a city, month, and day to analyze.
+
+    Returns:
+        (str) city - name of the city to analyze
+        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+    """
+    print('Hello! Let\'s explore some US bikeshare data!')
+    
+    
+# TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+
+def city():
+    cities = ['chicago', 'new york city', 'washington']
+   
+    while True:
+        city = ask_user_choice(
+            cities,
+            "Please enter: 'chicago', 'new york city' or 'washington' > ")
+        if city in cities:
+            break
+    print(city)
+
+    
+# TO DO: get user input for month (all, january, february, ... , june)
+    
+def month():
+    months = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+   
+    while True:
+        month = ask_user_choice(
+            months,
+            "Please enter: 'january', 'february', 'march', 'april', 'may', 'june' > ")
+        if month in months:
+            break
+    print(month) 
+    
+    
+# TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+# all is added for not filtering
+
+def day():
+    days = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+   
+    while True:
+        day = ask_user_choice(
+            days,
+            "Please enter: 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' > ")
+        if day in days:
+            break
+    print(day) 
+
+    
+    print('-'*40)
+    return city, month, day
+
+   
+    
+    
+    
+def load_data(city, month, day):
+    """
+    Loads data for the specified city and filters by month and day if applicable.
+
+    Args:
+        (str) city - name of the city to analyze
+        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+    Returns:
+        df - Pandas DataFrame containing city data filtered by month and day
+    """
+    
+    # Read data from csv file- df stands for Data Frame
+    # To Avoid the Error name 'df' is not defined
+
+def func_nb():
+    df = pd.read_csv(CITY_DATA[city])
+    df = DataFrame(data)
+    df['Tag'] = df['Tag'].map(lambda x: re.sub(r'\W+', '_', x))
+    
+    return df
+
+    df = func_nb()
+
+    # only this command df = pd.read_csv(CITY_DATA[city])
+
+    # Convert the Column of Start Time to Datetime to Be Able to Extract Day, Month and Hour
+
+    df['Start Time'] = pd.to_datetime(df['Start Time'])
+
+    # day_name()  
+    #import calendar
+    #list(calendar.day_name)
+        
+    # Extract day, month and hour from Date Time Column
+    df['day'] = df['Start Time'].dt.day
+    df['month'] = df['Start Time'].dt.month
+    df['hour'] = df['Start Time'].dt.hour
+    
+    # Get the List Index for Month +1 since it Starts from 0 then Create the New Data Frame
+    if month != 'all':
+       month = months.index(month) + 1
+        
+    df = df[df['month'] == month]
+
+    # Filter by Day if Applicable to Create the New Data Frame
+    if day != 'all':
+    
+        df = df[df['day'] == day.title()]
+
+        return df
+
+
+    
+    
+    
+def time_stats(df):
+    """Displays statistics on the most frequent times of travel."""
+
+    print('\nCalculating The Most Frequent Times of Travel...\n')
+    start_time = time.time()
+
+    
+    # TO DO: display the most common month
+    df['month'] = df['Start Time'].dt.month
+    most_common_month = df['month'].mode()[0]
+    print(most_common_month)
+
+    
+    # TO DO: display the most common day of week
+    df['day'] = df['Start Time'].dt.week
+    most_common_day = df['day'].mode()[0]
+    print(most_common_day)
+
+    
+    # TO DO: display the most common start hour
+    df['hour'] = df['Start Time'].dt.hour
+    most_common_hour = df['hour'].mode()[0]
+    print(most_common_hour)
+
+    
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-'*40)
+    
+    
+    
+    
+    
+def station_stats(df):
+    """Displays statistics on the most popular stations and trip."""
+
+    print('\nCalculating The Most Popular Stations and Trip...\n')
+    start_time = time.time()
+
+    # TO DO: display most commonly used start station
+    common_start_station = df['Start Station'].mode()[0]
+    print(common_start_station)
+
+    # TO DO: display most commonly used end station
+    common_end_time = df['End Station'].mode()[0]
+    print(common_end_station)
+
+
+    # TO DO: display most frequent combination of start station and end station trip
+    common_combination_trip = df['combination'].mode()[0]
+    print(common_combination_trip)
+
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-'*40)
+
+    
+    
+    
+def trip_duration_stats(df):
+    """Displays statistics on the total and average trip duration."""
+
+    print('\nCalculating Trip Duration...\n')
+    start_time = time.time()
+
+    # TO DO: display total travel time
+    total_travel_time = df['Trip Duration'].sum()
+    print(total_travel_time)
+
+    # TO DO: display mean travel time
+    mean_travel_time = df['Trip Duration'].mean()
+    print(mean_travel_time)
+
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-'*40)
+
+
+
+
+def user_stats(df):
+    """Displays statistics on bikeshare users."""
+
+    print('\nCalculating User Stats...\n')
+    start_time = time.time()
+
+    # TO DO: Display counts of user types
+    counts_user_types = df['User Type'].value_counts()
+    print(counts_user_types)
+
+    # TO DO: Display counts of gender  
+    
+    if 'Gender' in df:
+        gender = df['Gender'].value_counts()
+        print("Gender Data.")
+    else:
+        print("Gender Data is not Available.")
+
+    # TO DO: Display earliest, most recent, and most common year of birth
+     # earliest denotes oldest - recent denotes youngest
+              
+        
+    if 'Birth_Year' in df:
+        oldest = df['Birth_Year'].min()
+        print(oldest)
+        youngest = df['Birth_Year'].max()
+        print(youngest)
+        common_birth_year = df['Birth Year'].mode()[0]
+        print(common_birth_year)
+    else:
+        print("There is no birth year information in this city.")
+
+        
+        
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-'*40)
+
+    
+    
+    
+def main():
+    while True:
+        city, month, day = get_filters()
+        df = load_data(city, month, day)
+
+        time_stats(df)
+        station_stats(df)
+        trip_duration_stats(df)
+        user_stats(df)
+        display_raw_data(city)
+        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        if restart.lower() != 'yes':
+            break
+
+# Python program to execute  
+# main directly  
+print ("Always executed") 
+  
+if __name__ == "__main__":  
+    print ("Executed when invoked directly") 
+else:  
+    print ("Executed when imported") 
+    
