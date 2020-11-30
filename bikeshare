@@ -100,9 +100,9 @@ def load_data(city, month, day):
     
     # Read data from csv file- df stands for Data Frame
     # To Avoid the Error name 'df' is not defined
-
+    # in the first command, I changed from df to data in the left handside
 def func_nb():
-    df = pd.read_csv(CITY_DATA[city])
+    data = pd.read_csv(CITY_DATA[city])
     df = DataFrame(data)
     df['Tag'] = df['Tag'].map(lambda x: re.sub(r'\W+', '_', x))
     
@@ -256,9 +256,33 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-    
-    
-    
+
+
+# To Print 5 Rows at a Time and Wait for User Inputs. When the User asks for More Results, Print the Next Five Lines.
+# data = pd.read_csv(CITY_DATA[city])
+# df = DataFrame(data)
+
+def data(df):
+    while True:
+        answer = input("Would you like to print the raw data? Yes or No").lower()
+        if answer not in ['yes', 'no']:
+            answer = input("Kindly Please Type Yes or No.").lower()
+        elif answer == 'yes':
+            raw_data += 5
+    print(df.iloc[raw_data : raw_data + 5])
+    import os  # clear previous output in python
+    def clear(): # https://www.codegrepper.com/code-examples/delphi/how+to+clear+previous+output+in+python
+        os.system('clear')
+    again = input("Would you like to Print More Data? Yes or No").lower()
+    if again == 'no':
+        print('break')
+        
+
+
+# Create a Function Called Main to Control the Execution of Your Code
+# https://realpython.com/python-main-function/#create-a-function-called-main-to-contain-the-code-you-want-to-run
+# https://realpython.com/python-main-function/
+     
 def main():
     while True:
         city, month, day = get_filters()
